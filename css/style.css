@@ -1,0 +1,57 @@
+:root {
+    --yellow: #FFD15B;
+    --black: #1B1B1B;
+}
+
+body {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--yellow);
+    line-height: 1.5;
+    letter-spacing: .1rem;
+}
+
+.btn-primary {
+    background-color: var(--black);
+}
+
+.btn-primary:hover {
+    background-color: var(--black);
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background: url('../img/hero-background.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.hero .navbar {
+    margin-top: 0;
+}
+
+.hero-content {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.hero form .btn {
+    position: absolute;
+    z-index: 10;
+    right: 0; 
+    height: 100%;
+}
+
+.hero .form-control {
+    padding: 1.4378rem 2rem;
+}
