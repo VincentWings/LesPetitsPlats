@@ -11851,13 +11851,29 @@ body {
   font-style: normal;
 }
 
-h1, .h1 {
+h1, .h1,
+h2,
+.h2 {
   font-family: "Anton", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+h1, .h1 {
   color: #FFD15B;
   line-height: 1.5;
   letter-spacing: 0.1rem;
+}
+
+h2, .h2 {
+  font-size: 1.4rem;
+}
+
+h3, .h3 {
+  color: #7A7A7A;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .btn-primary {
@@ -11874,6 +11890,54 @@ h1, .h1 {
 
 .btn-secondary:hover {
   background-color: #1B1B1B;
+}
+
+.section-recipes .card {
+  position: relative;
+  border: 0;
+}
+
+.card-text {
+  font-size: 0.8rem;
+}
+
+.section-recipes .card-img-top {
+  height: 255px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.section-recipes .card-body ul {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 2rem;
+}
+
+.section-recipes .card-body li {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.recipe-card__ingredient,
+.recipe-card__ingredient-quantity {
+  width: 100%;
+}
+
+.recipe-card__ingredient {
+  font-weight: 500;
+}
+
+.recipe-card__ingredient-quantity {
+  color: #7A7A7A;
+}
+
+.recipe-card__duration {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .hero {
@@ -11897,13 +11961,9 @@ h1, .h1 {
 
 .hero form .btn {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: .6rem;
   z-index: 10;
-  margin: auto;
+  right: 0;
   height: 100%;
-  font-size: 1.6rem;
 }
 
 .hero .form-control {
@@ -11911,8 +11971,13 @@ h1, .h1 {
 }
 
 .search-form .btn {
+  margin-right: .6rem;
   width: 52px;
   height: 52px !important;
+}
+
+.search-form .input-group {
+  align-items: center;
 }
 
 .form-control {

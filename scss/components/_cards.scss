@@ -1,0 +1,52 @@
+//=============================================================================
+//== CARDS
+//=============================================================================
+
+.section-recipes .card {
+    position: relative;
+    border: 0;
+}
+
+.card-text {
+    font-size: .8rem;
+}
+
+.section-recipes .card-img-top {
+    height: 255px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.section-recipes .card-body ul {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2rem;
+}
+
+.section-recipes .card-body li {
+    //width: calc(50% - 1.4rem);
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+}
+
+.recipe-card__ingredient,
+.recipe-card__ingredient-quantity {
+    width: 100%;
+}
+
+.recipe-card__ingredient {
+    font-weight: 500;
+}
+
+.recipe-card__ingredient-quantity {
+    color: $grey;
+}
+
+.recipe-card__duration {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
