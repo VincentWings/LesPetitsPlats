@@ -1,265 +1,108 @@
 /*********************************************************************************
 *
 * Filters
+* 
 *
 /*********************************************************************************/
 
-import { Recipe } from "../models/recipe.js"; // Importing the Recipe class from the models directory
-import { RecipeCard } from '../templates/recipecard.js'; // Importing the RecipeCard class
+// Import helper functions for displaying recipes, error messages, and recipe counts
+import { displayErrorMessage } from "./displayErrorMessage.js";
+import { displayRecipes } from "./displayRecipes.js";
+import { displayRecipesNumber } from "./displayRecipesNumber.js";
 
-/*
-import {
-    displayRecipes,
-    displayNumberTotalRecipes
-} from '../pages/Index.js';
-import {
-    displayTag
-} from '../vues/TagVue.js';
-import {
-    filtersQueries,
-    getRecipesElements
-} from './FiltersQueries.js';
-import {
-    manageTagsInput
-} from './TagsInput.js';
+// Main function to filter recipes
+export function filterRecipes(recipes, filterOptions) {
+    // Extract values from the filter options
+    const { searchbarText, filters } = filterOptions;
+    const { selectedIngredients, selectedAppliances, selectedUstensils } = filters;
 
-*/
+    // Create a case-insensitive search pattern using the search text
+    const regex = new RegExp(searchbarText, "gi");
 
-const manageFilters = (allRecipes, filteredRecipes) => {
-    // filters by tags
-    const filterIngredientsButton = document.getElementById('filter-ingredients');
-    const filterAppliancesButton = document.getElementById('filter-appliances');
-    const filterUstensilsButton = document.getElementById('filter-ustensils');
-    const filterIngredientsList = document.getElementById('ingredients-list');
-    const filterAppliancesList = document.getElementById('appliances-list');
-    const filterUstensilsList = document.getElementById('ustensils-list');
-    const filterIngredientsDatas = getRecipesElements(
-        filteredRecipes,
-        'ingredients'
-    );
-    const filterAppliancesDatas = getRecipesElements(
-        filteredRecipes,
-        'appliances'
-    );
-    const filterUstensilsDatas = getRecipesElements(filteredRecipes, 'ustensils');
-    const filters = [{
-            name: 'ingredients',
-            button: filterIngredientsButton,
-            list: filterIngredientsList,
-            datas: filterIngredientsDatas,
-        },
-        {
-            name: 'appliances',
-            button: filterAppliancesButton,
-            list: filterAppliancesList,
-            datas: filterAppliancesDatas,
-        },
-        {
-            name: 'ustensils',
-            button: filterUstensilsButton,
-            list: filterUstensilsList,
-            datas: filterUstensilsDatas,
-        },
-    ];
-    const allListButtons = document.querySelectorAll('.filter__button');
-    const allListDOM = document.querySelectorAll('.filter__list-container');
-    // tags (selected filters)
-    const tagsContainer = document.getElementById('tags');
-    const tagsList = document.querySelector('.tags__list');
-    let tagsListElement = [];
-    let numberTags = 0;
-    let filteredRecipesByTag = filteredRecipes;
+    // Initialize an empty array to store the filtered recipes
+    const filteredRecipes = [];
 
-    /**
-     * Manage datas to display into filters
-     * when the user select a tag
-     * @param {Array} recipesList
-     */
-    const updateFiltersDatas = (recipesList) => {
-        const newFiltersDatas = [
-            getRecipesElements(recipesList, 'ingredients'),
-            getRecipesElements(recipesList, 'appliances'),
-            getRecipesElements(recipesList, 'ustensils'),
-        ];
+    // Remove any existing error message
+    const errorMessage = document.querySelector(".error-message");
+    if (errorMessage) errorMessage.remove();
 
-        filters.forEach((filter, index) => {
-            filter.datas = newFiltersDatas[index];
-            manageFilterList(filter);
-        });
-    };
+    // If no filters are applied, show all recipes
+    if (!searchbarText && selectedIngredients.length === 0 && selectedAppliances.length === 0 && selectedUstensils.length === 0) {
+        // Trigger a custom event to update dropdowns with all recipes
+        const newFilterRecipes = new CustomEvent("new-filter", { detail: recipes });
+        document.getElementById("dropdownIngredients").dispatchEvent(newFilterRecipes);
+        document.getElementById("dropdownAppareils").dispatchEvent(newFilterRecipes);
+        document.getElementById("dropdownUstensiles").dispatchEvent(newFilterRecipes);
 
-    /**
-     * Update recipes view, number of total recipes found and filters datas
-     * @param {Array} recipesList
-     */
-    const updateDatas = (recipesList) => {
-        displayRecipes(recipesList);
-        displayNumberTotalRecipes(recipesList);
-        updateFiltersDatas(recipesList);
-    };
+        // Display all recipes and update the count
+        displayRecipes(recipes);
+        displayRecipesNumber(recipes);
+        return; // Exit the function
+    }
 
-    /**
-     * manage open/close filter list and class for css animations
-     * Close opened filter when another is open
-     * @param {object} filter
-     */
-    const toggleFilter = (filter) => {
-        const ariaExpandedAttribute = filter.button.getAttribute('aria-expanded');
-        if (ariaExpandedAttribute === 'false') {
-            closeAllFilters(allListButtons, allListDOM);
-            // open selected filter
-            filter.list.classList.add('filter__list-container--open');
-            filter.button.classList.add('filter--open');
-            filter.button.setAttribute('aria-expanded', true);
-            manageTagsInput(filter, manageFilterList);
-            manageFilterList(filter);
-        } else {
-            // close selected filter
-            filter.list.classList.remove('filter__list-container--open');
-            filter.list.classList.add('filter__list-container--close');
-            filter.button.classList.remove('filter--open');
-            filter.button.setAttribute('aria-expanded', false);
-        }
-    };
+    // Loop through each recipe to check if it matches the filters
+    for (let recipe of recipes) {
+        // Assume the recipe matches all filters initially
+        let matchSearchBar = true;
+        let matchIngredients = true;
+        let matchAppliances = true;
+        let matchUstensils = true;
 
-    /**
-     * At open, all the datas of filtered recipes are display
-     * @param {object} filter
-     */
-    const manageFilterList = (filter) => {
-        const filterList = document.getElementById(`${filter.name}-list-items`);
-        filterList.innerHTML = '';
-        filter.datas.forEach((tag) => {
-            const listElement = document.createElement('li');
-            const filterButton = document.createElement('button');
-            filterButton.setAttribute('role', 'option');
-            filterButton.setAttribute('id', tag.split(' ').join('')); // remove space into filter name
-            filterButton.textContent = tag;
-
-            listElement.appendChild(filterButton);
-            filterList.appendChild(listElement);
-
-            filterButton.addEventListener('click', () => {
-                addTag(filter, tag);
-            });
-        });
-    };
-
-    /**
-     * Add tag selected by user (avoid duplicate tags)
-     * @param {object} filter
-     * @param {string} tagName
-     */
-    const addTag = (filter, tagName) => {
-        if (tagsContainer.className === 'tags') {
-            tagsContainer.className = 'tags--activate';
-        }
-        let duplicateTagsCount = 0;
-        if (tagsListElement.length > 0) {
-            for (let i = 0; i < tagsListElement.length; i++) {
-                if (tagsListElement[i].tagName === tagName) {
-                    duplicateTagsCount++;
-                }
+        // Check if the recipe matches the search text
+        if (searchbarText) {
+            matchSearchBar = false; // Default to no match
+            // Check if the recipe name, description, or ingredients match the search text
+            if (
+                regex.test(recipe.name) ||
+                regex.test(recipe.description) ||
+                recipe.ingredients.some(ing => regex.test(ing.ingredient))
+            ) {
+                matchSearchBar = true;
             }
         }
-        if (duplicateTagsCount === 0) {
-            numberTags += 1;
-            const filterName =
-                filter.name === 'appliances' ? 'appliance' : filter.name;
-            displayTag(tagName, tagsList, removeTag);
-            tagsListElement.push({
-                tagName: tagName,
-                filterName: filterName,
-            });
-            filteredRecipesByTag = filtersQueries(filteredRecipesByTag, tagName, [
-                filterName,
-            ]);
-            updateDatas(filteredRecipesByTag);
+
+        // Check if the recipe matches the selected appliance
+        if (selectedAppliances.length > 0) {
+            matchAppliances = selectedAppliances.some(
+                appliance => recipe.appliance.toLowerCase().includes(appliance.toLowerCase())
+            );
         }
-        toggleFilter(filter);
-    };
 
-    /**
-     * Remove tag when user click on tag cross
-     * update filterRecipesByTag only with remaining tags
-     * @param {string} tagName
-     */
-    const removeTag = (tagName) => {
-        numberTags -= 1;
-        const tagNameSelectedDOM = document.getElementById(
-            `${tagName.split(' ').join('')}-selected`
-        );
-        tagNameSelectedDOM.remove();
-        tagsListElement = tagsListElement.filter(
-            (item) => item.tagName !== tagName
-        );
-        filteredRecipesByTag = filteredRecipes;
-        tagsListElement.forEach((tag) => {
-            filteredRecipesByTag = filtersQueries(filteredRecipesByTag, tag.tagName, [
-                tag.filterName,
-            ]);
-        });
-        updateDatas(filteredRecipesByTag);
-        if (numberTags === 0) {
-            tagsContainer.className = 'tags';
-            filteredRecipesByTag = filteredRecipes;
-            updateDatas(filteredRecipes);
+        // Check if the recipe matches all selected ingredients
+        if (selectedIngredients.length > 0) {
+            matchIngredients = selectedIngredients.every(selectedIng =>
+                recipe.ingredients.some(recipeIng => recipeIng.ingredient.toLowerCase().includes(selectedIng.toLowerCase()))
+            );
         }
-    };
 
-    /**
-     * Remove all tags when user search recipe from principal search bar
-     */
-    const removeAllTags = () => {
-        if (tagsListElement.length > 0) {
-            tagsListElement.forEach((tag) => {
-                const tagNameSelectedDOM = document.getElementById(
-                    `${tag.tagName.split(' ').join('')}-selected`
-                );
-                tagNameSelectedDOM.remove();
-            });
-            tagsContainer.className = 'tags';
-            // empty table
-            tagsListElement.splice(0, tagsListElement.length);
-            updateDatas(allRecipes);
-            filteredRecipesByTag = filteredRecipes;
+        // Check if the recipe matches all selected ustensils
+        if (selectedUstensils.length > 0) {
+            const recipeUstensils = recipe.ustensils.map(ustensil => ustensil.toLowerCase());
+            matchUstensils = selectedUstensils.every(ustensil =>
+                recipeUstensils.includes(ustensil.toLowerCase())
+            );
         }
-    };
 
-    // execute when call into index.js
-    filters.forEach((filter) => {
-        filter.button.addEventListener('click', () => {
-            toggleFilter(filter);
-        });
-    });
-    // clear tags when user make a general search into hero search bar
-    const filterInput = document.getElementById('hero-search');
-    const filterEmpty = document.getElementById(`empty-filter-hero-search`);
-    filterInput.addEventListener('input', (event) => {
-        let inputText = event.target.value;
-        if (inputText.length === 1) {
-            closeAllFilters(allListButtons, allListDOM);
-            removeAllTags();
+        // If the recipe matches all filters, add it to the filtered list
+        if (matchSearchBar && matchIngredients && matchAppliances && matchUstensils) {
+            filteredRecipes.push(recipe);
         }
-    });
-    // empty tag on search input cross click
-    filterEmpty.addEventListener('click', () => {
-        closeAllFilters(allListButtons, allListDOM);
-        removeAllTags();
-    });
-};
+    }
 
-const closeAllFilters = (filtersButtons, filtersListDOM) => {
-    filtersButtons.forEach((button) => {
-        button.classList.remove('filter--open');
-        button.setAttribute('aria-expanded', false);
-    });
-    filtersListDOM.forEach((list) => {
-        list.classList.remove('filter__list-container--open');
-        list.classList.remove('filter__list-container--close');
-    });
-};
+    // Display filtered recipes or show an error if none match
+    if (filteredRecipes.length > 0) {
+        // Trigger a custom event to update dropdowns with filtered recipes
+        const newFilterRecipes = new CustomEvent("new-filter", { detail: filteredRecipes });
+        document.getElementById("dropdownIngredients").dispatchEvent(newFilterRecipes);
+        document.getElementById("dropdownAppareils").dispatchEvent(newFilterRecipes);
+        document.getElementById("dropdownUstensiles").dispatchEvent(newFilterRecipes);
 
-export {
-    manageFilters
-};
+        // Display the filtered recipes and update the count
+        displayRecipes(filteredRecipes);
+        displayRecipesNumber(filteredRecipes);
+    } else {
+        // If no recipes match, show an error and update the count to 0
+        displayErrorMessage(searchbarText);
+        displayRecipesNumber([]);
+    }
+}

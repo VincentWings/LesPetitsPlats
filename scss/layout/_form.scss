@@ -7,6 +7,20 @@
     height: 52px !important;
 }
 
+#searchbar {
+    border: 3px solid transparent;
+    border-radius: 8px;
+    transition: all ease-in-out .3s;
+}
+
+#searchbar.highlight {
+    border-color: $yellow;
+}
+
 .form-control {
     border-width: 0;
+}
+
+.input-group {
+    align-items: center;
 }
