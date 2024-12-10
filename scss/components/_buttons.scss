@@ -1,0 +1,35 @@
+//=============================================================================
+//== BUTTONS
+//=============================================================================
+
+.btn-primary {
+    background-color: $primary;
+}
+
+.btn-primary:hover {
+    background-color: $primary;
+}
+
+.btn-secondary {
+    background-color: $secondary;
+}
+
+.btn-secondary:hover {
+    background-color: $secondary;
+}
+
+.btn-close {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-left: 10px;
+    padding: 0;
+    background: none;
+    color: #000 !important;
+    font-size: 30px;
+    opacity: 1;
+}
+
+.btn-close span {
+    color: #000 !important;
+}

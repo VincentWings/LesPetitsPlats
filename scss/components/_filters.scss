@@ -1,0 +1,131 @@
+//=============================================================================
+//== FILTERS
+//=============================================================================
+
+.section-filters__recipes-number {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.section-filters__recipes-number .recipes-number {
+    margin-bottom: 15px;
+    font-family: "Anton", sans-serif;
+}
+
+.section-filters__filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.section-filters__filters .dropdown-toggle,
+.section-filters__filters .dropdown-toggle:active {
+    background-color: #fff;
+    color: #000;
+    border: 0;
+}
+
+.section-filters__filters .dropdown {
+    width: 280px;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.section-filters__filters .dropdown>.btn::after {
+    display: none;
+}
+
+.section-filters__filters .dropdown-toggle,
+.section-filters__filters .dropdown-menu {
+    width: 100%;
+}
+
+.section-filters__filters .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.section-filters__filters .dropdown-toggle.show {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.section-filters__filters .dropdown-menu {
+    transform: translate3d(0px, 54px, 0px) !important;
+    border: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.section-filters__filters .dropdown-item {
+    position: relative;
+    text-wrap: auto;
+    cursor: pointer;
+}
+
+.section-filters__filters .dropdown-item .icon-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.section-filters__filters .dropdown-item.tagged {
+    padding-right: 35px;
+    background: $yellow;
+}
+
+.section-filters__filters .dropdown-item:hover,
+.section-filters__filters .dropdown-item:focus {
+    background: $primary;
+    color: #000;
+}
+
+.section-filters__filters .dropdown ul {
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.section-filters__filters .search-form {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid $grey;
+}
+
+.section-filters__filters .search-form .btn-off {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: default;
+}
+
+.section-filters__filters .search-form .form-control {
+    padding: 0;
+}
+
+.section-filters__filters .search-form .form-control:focus {
+    box-shadow: none;
+}
+
+.section-filters__filters .search-form .btn {
+    width: 30px;
+    height: 35px !important;
+    margin-left: 10px;
+    padding: 0;
+    background: none;
+    color: $grey;
+    border: 0;
+    box-shadow: none;
+}

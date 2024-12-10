@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="cherchez parmis plus de 1500 recettes du quotidien, simples et délicieuses">
+
+    <title>Les petits plats | Recettes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="hero py-5">
+        <nav class="navbar" aria-label="Navigation principale">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold text-white" href="index.html"
+                    aria-label="Accueil Les petits plats">
+                    <img src="img/logo-les-petits-plats.svg" alt="Les petits plats logo">
+                </a>
+            </div>
+        </nav>
+
+        <div class="container hero-content">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 mb-3">
+                    <h1 class="text-uppercase fw-bold text-center">cherchez parmis plus de 1500 recettes du
+                        quotidien, simples et délicieuses</h1>
+                </div>
+
+                <div class="col-12 col-md-10 offset-md-1">
+                    <form role="search" class="searchform search-form rounded-3 overflow-hidden">
+                        <div class="input-group">
+                            <label for="searchbar" class="visually-hidden">Rechercher</label>
+                            <input id="searchbar" class="form-control" type="search" name="q"
+                                pattern="[A-Za-zÀ-ÿ ]{3,40}" placeholder="Rechercher une recette, un ingrédient, ..."
+                                minlength="3" maxlength="40" required>
+
+                            <button id="btn-search" class="btn btn-secondary rounded-3 me-2" type="submit">
+                                <span class="visually-hidden">Rechercher</span>
+
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="section-filters" class="pt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="section-filters__filters px-2">
+                            <!-- Filter: Ingrédients -->
+                            <div id="dropdown-ingredients" class="dropdown me-lg-3">
+                                <button id="dropdownMenuButton-ingredients" class="btn btn-secondary dropdown-toggle dropdown-btn-filter"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span>Ingrédients</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+
+                                <div class="dropdown-menu bg-white" aria-labelledby="dropdown-ingredients">
+                                    <form role="search" class="search-form overflow-hidden">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search"
+                                                placeholder="Rechercher un ingrédient" aria-label="Rechercher" pattern="[A-Za-zÀ-ÿ ]{3,40}">
+
+                                            <button class="btn btn-secondary btn-off" type="submit">
+                                                <span class="visually-hidden">Rechercher</span>
+
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <ul class="list-unstyled mb-0 mt-3"
+                                        role="listbox">
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Filter: Appareils -->
+                            <div id="dropdown-appliances" class="dropdown me-lg-3">
+                                <button id="dropdownMenuButton-appliances" class="btn btn-secondary dropdown-toggle dropdown-btn-filter"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span>Appareils</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+
+                                <div class="dropdown-menu bg-white" aria-labelledby="dropdownMenuButton-appliances">
+                                    <form role="search" class="search-form overflow-hidden">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search"
+                                                placeholder="Rechercher un appareil" aria-label="Rechercher" pattern="[A-Za-zÀ-ÿ ]{3,40}">
+
+                                            <button class="btn btn-secondary btn-off" type="submit">
+                                                <span class="visually-hidden">Rechercher</span>
+
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <ul id="appliance-options" class="list-unstyled mb-0 mt-3" role="listbox">
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Filter: Ustensiles -->
+                            <div id="dropdown-utils" class="dropdown me-lg-3">
+                                <button id="dropdownMenuButton-utils" class="btn btn-secondary dropdown-toggle dropdown-btn-filter"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span>Ustensiles</span>
+                                    <i class="bi bi-chevron-down"></i>
+                                </button>
+
+                                <div class="dropdown-menu bg-white" aria-labelledby="dropdown-utils">
+                                    <form role="search" class="search-form overflow-hidden">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" placeholder="Rechercher un ustensile" aria-label="Rechercher" pattern="[A-Za-zÀ-ÿ ]{3,40}">
+
+                                            <button class="btn btn-secondary btn-off" type="submit">
+                                                <span class="visually-hidden">Rechercher</span>
+
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <ul id="ustensil-options" class="list-unstyled mb-0 mt-3" role="listbox">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2 px-2">
+                        <div class="section-filters__recipes-number px-3 text-end">
+                            <span class="recipes-number">0 recettes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-tags">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="display-tag d-flex flex-row flex-wrap align-items-center mt-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-recipes" class="section-recipes mt-5">
+            <div class="container">
+                <div class="row"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Boostrap JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Entry point -->
+    <script type="module" src="scripts/pages/index.js"></script>
+</body>
+
+</html>

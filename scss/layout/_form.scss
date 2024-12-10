@@ -1,0 +1,33 @@
+//=============================================================================
+//== FORM
+//=============================================================================
+
+.search-form .btn {
+    width: 52px;
+    height: 52px !important;
+}
+
+.no-results {
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+}
+
+#searchbar {
+    border: 3px solid transparent;
+    border-radius: 8px;
+    transition: all ease-in-out .3s;
+}
+
+#searchbar.highlight {
+    border-color: $yellow;
+}
+
+.form-control {
+    border-width: 0;
+}
+
+.input-group {
+    align-items: center;
+}
