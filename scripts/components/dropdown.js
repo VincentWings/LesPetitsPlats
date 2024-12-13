@@ -143,21 +143,13 @@ export class DropdownManager {
 	dropdownOpen() {
 		this.dropdown.setAttribute("aria-expanded", "true");
 		this.dropdownBtn.setAttribute("aria-expanded", "true");
-		this.combobox.style.maxHeight = "280px";
-		this.combobox.style.opacity = "1";
 		this.dropdownBtn.querySelector(".arrow-icon").setAttribute("src", "assets/icones/arrow-up.svg");
-		
-		//this.combobox.querySelector("button").setAttribute("tabindex", "0");
 		this.dropdownInput.setAttribute("tabindex", "0");
 	}
 	dropdownClose() {
 		this.dropdown.setAttribute("aria-expanded", "false");
 		this.dropdownBtn.setAttribute("aria-expanded", "false");
-		this.combobox.style.maxHeight = "0";
-		this.combobox.style.opacity = "0";
 		this.dropdownBtn.querySelector(".arrow-icon").setAttribute("src", "assets/icones/arrow-down.svg");
-		
-		//this.combobox.querySelector("button").setAttribute("tabindex", "-1");
 		this.dropdownInput.setAttribute("tabindex", "-1");
 	}
 	
