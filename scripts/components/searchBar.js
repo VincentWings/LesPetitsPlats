@@ -39,7 +39,7 @@ export class SearchBar {
     event.preventDefault(); // Prevent the form from reloading the page
 
     const searchText = this.searchBar.value.trim(); // Remove extra spaces from the input
-    console.log("Search input:", searchText); // Log the input for debugging
+    //console.log("Search input:", searchText); // Log the input for debugging
 
     // If input has 3 or more characters, filter recipes
     if (searchText.length >= 3) {
@@ -47,7 +47,7 @@ export class SearchBar {
       filterRecipes(this.recipes, this.filterOptions); // Update the displayed recipes
     } else {
       // If input is too short, reset filters
-      console.log("Input too short, resetting filters");
+      //console.log("Input too short, resetting filters");
       this.filterOptions.searchbarText = ""; // Clear the search text
       filterRecipes(this.recipes, this.filterOptions); // Reset the recipe display
       displayRecipesNumber([]); // Show 0 recipes
@@ -69,14 +69,14 @@ export class SearchBar {
     // Trigger search when the user types in the search bar
     this.searchBar.addEventListener("input", () => {
       const searchText = this.searchBar.value.trim();
-      console.log("Search bar input changed:", searchText);
+      //console.log("Search bar input changed:", searchText);
 
       if (searchText.length >= 3) {
-        console.log("Valid input detected, filtering recipes");
+        //console.log("Valid input detected, filtering recipes");
         this.filterOptions.searchbarText = searchText;
         filterRecipes(this.recipes, this.filterOptions);
       } else {
-        console.log("Input too short, resetting filters");
+        //console.log("Input too short, resetting filters");
         this.filterOptions.searchbarText = "";
         filterRecipes(this.recipes, this.filterOptions);
       }
