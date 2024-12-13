@@ -143,13 +143,12 @@ export class DropdownManager {
 	dropdownOpen() {
 		this.dropdown.setAttribute("aria-expanded", "true");
 		this.dropdownBtn.setAttribute("aria-expanded", "true");
-		this.dropdownBtn.querySelector(".arrow-icon").setAttribute("src", "assets/icones/arrow-up.svg");
 		this.dropdownInput.setAttribute("tabindex", "0");
 	}
+	
 	dropdownClose() {
 		this.dropdown.setAttribute("aria-expanded", "false");
 		this.dropdownBtn.setAttribute("aria-expanded", "false");
-		this.dropdownBtn.querySelector(".arrow-icon").setAttribute("src", "assets/icones/arrow-down.svg");
 		this.dropdownInput.setAttribute("tabindex", "-1");
 	}
 	
