@@ -29,6 +29,10 @@ The primary goal was to build a high-performance search functionality that provi
    - [Fiche d'investigation de fonctionnalité (PDF - in French)](https://github.com/VincentWings/LesPetitsPlats/blob/main/docs/Fiche%20d'investigation%20de%20fonctionnalit%C3%A9.pdf)
    - [Algorigramme (Image - in French)](https://github.com/VincentWings/LesPetitsPlats/blob/main/docs/Algorigramme.jpg)
 
+### Branches
+- **Main Branch**: Algorithme 1 - Filtrage avec boucles natives (`for`, `while`)
+- **Algorithm2 Branch**: Algorithme 2 - Filtrage avec méthodes de tableau (`filter`, `some`, `every`)
+
 ### Key Takeaways
 - Emphasized code reusability and maintainability through modular functions.
 - Followed Green Code practices for efficiency and security.
