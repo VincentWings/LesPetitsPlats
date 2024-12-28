@@ -58,12 +58,12 @@ export class SearchBar {
   initializeEventListeners() {
     // Highlight search bar when focused
     this.searchBar.addEventListener("focus", () => {
-      this.searchBar.classList.add("highlight");
+      this.searchForm.classList.add("highlight");
     });
 
     // Remove highlight when focus is lost
     this.searchBar.addEventListener("blur", () => {
-      this.searchBar.classList.remove("highlight");
+      this.searchForm.classList.remove("highlight");
     });
 
     // Trigger search when the user types in the search bar

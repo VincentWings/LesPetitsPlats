@@ -12130,21 +12130,36 @@ main {
   height: 52px !important;
 }
 
-.no-results {
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-}
-
-#searchbar {
+.searchform {
+  position: relative;
+  background: #fff;
   border: 3px solid transparent;
   border-radius: 8px;
   transition: all ease-in-out 0.3s;
 }
 
-#searchbar.highlight {
+.searchform.highlight {
   border-color: #FFD15B;
+}
+
+.searchform .input-group {
+  width: calc(100% - 52px);
+}
+
+.searchform #btn-search {
+  right: -52px;
+}
+
+.searchform .form-control:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.no-results {
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
 }
 
 .form-control {
