@@ -1,39 +1,40 @@
-# Les Petits Plats - Recipe Search Website
+# Les Petits Plats - Recipe Search Website  
 
-https://vincentwings.github.io/LesPetitsPlats/
+[Les Petits Plats Website](https://vincentwings.github.io/LesPetitsPlats/)  
 
-### Project Overview
-This project was developed for "Les Petits Plats," a company transitioning from publishing cookbooks to creating its own recipe website, similar to platforms like Marmiton or 750g.
+Les Petits Plats is a recipe search platform developed for a company transitioning from publishing cookbooks to creating its own digital recipe website. The project focuses on delivering an optimized search engine that allows users to find recipes seamlessly among 50 sample dishes.  
 
-The primary goal was to build a high-performance search functionality that provides a seamless user experience for finding recipes among 50 sample dishes.
+## Features  
 
-### Features
-- **Recipe Search Engine**: Two algorithmic implementations using native loops and functional array methods.
-- **Responsive Design**: Fully responsive UI adhering strictly to the provided Figma mockups.
-- **Tag-Based Filtering**: Search results can be refined using recipe tags.
-- **Performance Comparison**: Implemented and compared two search algorithms for optimal performance.
+- **Recipe Search Engine**: Implements two search algorithms using native loops and functional array methods.  
+- **Tag-Based Filtering**: Users can refine search results using recipe tags.  
+- **Performance Comparison**: Evaluates and compares the efficiency of different search algorithms.  
+- **Responsive Design**: Fully adheres to Figma mockups for an optimized user experience.  
 
-### Technologies Used
-- **Frontend Framework**: HTML5, CSS3 (Bootstrap CSS for styling only)
-- **JavaScript (Vanilla)**: Custom search algorithms and dynamic DOM manipulation.
-- **Design Tools**: Figma for UI prototyping, Draw.io for flowchart creation.
+## Technologies Used  
 
-### Development Process
+- **JavaScript (Vanilla)**: Implements custom search algorithms and dynamic DOM manipulation.  
+- **HTML5 & CSS3**: Structured and styled the frontend, with Bootstrap used for styling only.  
+- **Design Tools**:  
+  - **Figma**: UI prototyping and adherence to design guidelines.  
+  - **Draw.io**: Flowchart creation for algorithm visualization.  
+- **Performance Testing**:  
+  - Conducted tests using [Jsben.ch](https://jsben.ch/OPLjw) to compare algorithm efficiency.  
 
-1. **UI Implementation**: Built the frontend using best practices, ensuring W3C validation.
-2. **Algorithm Development**: Created two search algorithm versions:
-   - Native Loops (`for`, `while`) implementation.
-   - Functional Array Methods (`filter`, `map`, `reduce`) implementation.
-3. **Performance Testing**: Compared algorithm performance using [Jsben.ch](https://jsben.ch/OPLjw).
-4. **Documentation**: Delivered a comprehensive functionality investigation document with implementation details, flowcharts, performance tests, and recommendations.
-   - [Fiche d'investigation de fonctionnalité (PDF - in French)](https://github.com/VincentWings/LesPetitsPlats/blob/main/docs/Fiche%20d'investigation%20de%20fonctionnalit%C3%A9.pdf)
-   - [Algorigramme (Image - in French)](https://github.com/VincentWings/LesPetitsPlats/blob/main/docs/Algorigramme.jpg)
+## Development Process  
 
-### Branches
-- **Main Branch**: Algorithme 1 - Filtrage avec boucles natives (`for`, `while`)
-- **Algorithm2 Branch**: Algorithme 2 - Filtrage avec méthodes de tableau (`filter`, `some`, `every`)
+1. **UI Implementation**: Built the frontend following best practices and W3C validation.  
+2. **Algorithm Development**: Designed and tested two search algorithm versions:  
+   - **Native Loops Approach**: Uses `for`, `while` loops for filtering.  
+   - **Functional Array Methods Approach**: Uses `filter`, `map`, and `reduce`.  
+3. **Documentation**: Created a detailed report with implementation insights, performance analysis, and recommendations.  
+   - [Functionality Investigation Document (PDF - in French)](https://github.com/VincentWings/LesPetitsPlats/blob/main/docs/Fiche%20d'investigation%20de%20fonctionnalit%C3%A9.pdf)  
+   - [Algorithm Flowchart (Image - in French)](https://github.com/VincentWings/LesPetitsPlats/blob/main/docs/Algorigramme.jpg)  
 
-### Key Takeaways
-- Emphasized code reusability and maintainability through modular functions.
-- Followed Green Code practices for efficiency and security.
-- Ensured a seamless, near-instantaneous search experience for end users.
+## Skills Demonstrated  
+
+- **Algorithm Optimization**: Implementing and comparing search methods for efficiency.  
+- **Frontend Development**: Creating a structured and responsive UI.  
+- **Performance Testing**: Evaluating execution time and optimizing search algorithms.  
+- **Code Maintainability**: Ensuring reusable and modular functions.  
+- **Green Code Practices**: Writing efficient and secure JavaScript.
